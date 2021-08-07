@@ -2,6 +2,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
+// import { seedSampleData } from '@test/test-factories';
+import { seedSampleData } from './test-factories';
+import { prisma } from './prisma';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -13,6 +16,17 @@ describe('AppController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+
+    // initial data
+    await seedSampleData({
+      id: '1',
+      required: true,
+      count: 10,
+    });
+  });
+
+  afterAll(async () => {
+    await prisma.$disconnect();
   });
 
   it('/ (GET)', () => {
