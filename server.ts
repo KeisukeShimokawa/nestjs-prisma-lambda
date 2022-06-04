@@ -46,9 +46,9 @@ const resolvers = {
   Query: {
     users: () => users,
     // @ts-expect-error 型エラーは一旦無視
-    user: (parent, args, context) => {
-      console.log(args);
-      return users.find((item) => item.id === args.id);
+    user: (parent, { id }, context) => {
+      console.log(id);
+      return users.find((item) => item.id === id);
     },
   },
 };
