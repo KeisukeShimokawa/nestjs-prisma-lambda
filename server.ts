@@ -23,6 +23,17 @@ const typeDefs = gql`
     user(id: ID): User
   }
 
+  input UserInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
+  }
+
+  type Mutation {
+    createUser(userNew: UserInput!): User
+  }
+
   type User {
     id: ID
     firstName: String
