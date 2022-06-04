@@ -80,6 +80,8 @@ const resolvers = {
   },
 
   Mutation: {
+    // クエリを送信する際は以下のエイリアスを指定することができる
+    // user: createUser(...) --> { "data": { "user": { ... } } }
     createUser: (_: any, { userNew }: any) => {
       console.log({ _ });
       console.log({ userNew });
@@ -94,7 +96,13 @@ const resolvers = {
   },
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: {
+    userLoggedIn: true,
+  },
+});
 
 server.listen().then(({ url }) => {
   console.log(`Server ready at ${url}`);
