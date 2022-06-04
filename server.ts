@@ -1,15 +1,16 @@
 import { ApolloServer, gql } from "apollo-server";
+import { randomUUID } from "crypto";
 
 const users = [
   {
-    id: 1,
+    id: randomUUID(),
     firstName: "Sample",
     lastName: "beautify",
     email: "sample@example.com",
     password: "12345",
   },
   {
-    id: 2,
+    id: randomUUID(),
     firstName: "Example",
     lastName: "dirty",
     email: "dirty@example.com",
@@ -49,6 +50,17 @@ const resolvers = {
     user: (parent, { id }, context) => {
       console.log(id);
       return users.find((item) => item.id === id);
+    },
+  },
+
+  Mutation: {
+    createUser: (_: any, { userNew }: any) => {
+      const newUser = {
+        id: randomUUID(),
+        ...userNew,
+      };
+      users.push(newUser);
+      return newUser;
     },
   },
 };
