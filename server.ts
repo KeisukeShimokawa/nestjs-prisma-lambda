@@ -18,6 +18,17 @@ const users = [
   },
 ];
 
+const todos = [
+  {
+    title: "sample todo1",
+    by: users[0].id,
+  },
+  {
+    title: "sample todo 2",
+    by: users[1].id,
+  },
+];
+
 const typeDefs = gql`
   type Query {
     users: [User]
@@ -36,10 +47,16 @@ const typeDefs = gql`
   }
 
   type User {
-    id: ID
-    firstName: String
-    lastName: String
-    email: String
+    id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    todos: [Todo]
+  }
+
+  type Todo {
+    title: String
+    by: ID!
   }
 `;
 
@@ -48,13 +65,25 @@ const resolvers = {
     users: () => users,
     // @ts-expect-error 型エラーは一旦無視
     user: (parent, { id }, context) => {
-      console.log(id);
+      console.log({ parent });
+      console.log({ context });
+      console.log({ id });
       return users.find((item) => item.id === id);
+    },
+  },
+
+  User: {
+    todos: (parent: any) => {
+      console.log({ parent });
+      return todos.filter((todo) => todo.by === parent.id);
     },
   },
 
   Mutation: {
     createUser: (_: any, { userNew }: any) => {
+      console.log({ _ });
+      console.log({ userNew });
+
       const newUser = {
         id: randomUUID(),
         ...userNew,
