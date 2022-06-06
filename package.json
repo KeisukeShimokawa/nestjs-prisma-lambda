@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsc",
     "start:basics": "npm run build && node dist/basics/server.js",
+    "start:chat": "npm run build && node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate:dev": "prisma migrate dev --name",
     "migrate:reset": "prisma migrate reset --force",
