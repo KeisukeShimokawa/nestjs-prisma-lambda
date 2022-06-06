@@ -11,14 +11,17 @@
     "start:basics": "npm run build && node dist/basics/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate:dev": "prisma migrate dev --name",
+    "migrate:reset": "prisma migrate reset --force",
     "db:studio": "prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^3.14.0",
     "apollo-server": "^3.8.1",
+    "bcrypt": "^5.0.1",
     "graphql": "^16.5.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/node": "^17.0.38",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
