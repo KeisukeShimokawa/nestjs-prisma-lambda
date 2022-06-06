@@ -9,9 +9,12 @@
   "scripts": {
     "build": "tsc",
     "start:basics": "npm run build && node dist/basics/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate:dev": "prisma migrate dev --name",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
+    "@prisma/client": "^3.14.0",
     "apollo-server": "^3.8.1",
     "graphql": "^16.5.0"
   },
@@ -22,6 +25,7 @@
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.6.2",
+    "prisma": "^3.14.0",
     "typescript": "^4.7.2"
   }
 }
