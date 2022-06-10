@@ -20,7 +20,7 @@ export const typeDefs = gql`
   type Mutation {
     signUpUser(userNew: UserInput!): User
     signInUser(userSignIn: UserSignInInput): Token
-    createMessage(): Message
+    createMessage(receiverId: Int!, text: String!): Message
   }
 
   scalar Date
