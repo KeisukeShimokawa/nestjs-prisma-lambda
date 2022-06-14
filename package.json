@@ -7,6 +7,7 @@
   "license": "ISC",
   "main": "index.js",
   "scripts": {
+    "frontend:start": "vite",
     "build": "tsc",
     "start:basics": "npm run build && node dist/basics/server.js",
     "start:chat": "npm run build && node dist/server.js",
