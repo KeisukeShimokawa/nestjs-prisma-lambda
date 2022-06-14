@@ -1,3 +1,9 @@
+import { AuthScreen } from "./AuthScreen";
+
 export const App = () => {
-  return <div>Hello</div>;
+  return (
+    <>
+      <AuthScreen />
+    </>
+  );
 };
